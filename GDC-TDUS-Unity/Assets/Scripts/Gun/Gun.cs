@@ -25,8 +25,16 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
+        {
             FireWeapon();
+            can_fire = false;
+        }
+        if (Input.GetMouseButtonUp(0) && available_shots > 0)
+            can_fire = true;
+
+        if (Input.GetKeyUp(KeyCode.R))
+            ReloadWeapon();
     }
     
     private void FireWeapon()
@@ -39,8 +47,20 @@ public class Gun : MonoBehaviour
             Destroy(bulletObject, bullet_life);
         }
     }
+
     private void ReloadWeapon()
     {
+        if(available_shots != max_shots)
+        {
+            can_fire = false;
+            StartCoroutine("ReloadInProgress");
+            Invoke("ReloadInProgress", time_to_reload);
+        }
+    }
 
+    private void ReloadInProgress()
+    {
+        available_shots = max_shots;
+        can_fire = true;
     }
 }
