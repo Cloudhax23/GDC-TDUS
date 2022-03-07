@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     private Vector3 new_pos;
     public float bullet_speed = 345;
     public float hit_force = 50f;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -27,10 +27,12 @@ public class Bullet : MonoBehaviour
 
         if (Physics.Raycast(new_pos, direction, out hit, distance))
         {
-            if(hit.rigidbody != null)
+            if(hit.collider != null && hit.transform.tag == "Pins")
             {
-                print("We hit the pins!");
-                hit.rigidbody.AddForce(direction * hit_force);
+                Destroy(hit.transform.gameObject);
+                TargetSpawner ts = Camera.main.GetComponent<TargetSpawner>();
+                ts.SpawnNextFloor();
+                GameManager.GM.UpdateScore(100);
             }
             current_pos = hit.point;
         }

@@ -24,7 +24,8 @@ public class HUDCanvas : MonoBehaviour
     public Text livesTextbox; //textbox for the lives
     public Text scoreTextbox; //textbox for the score
     public Text highScoreTextbox; //textbox for highscore
-    
+    public Text ammoTextbox;
+
     //GM Data
     private int level;
     private int totalLevels;
@@ -66,7 +67,7 @@ public class HUDCanvas : MonoBehaviour
         if (livesTextbox) { livesTextbox.text = "Lives " + lives; }
         if (scoreTextbox) { scoreTextbox.text = "Score " + score; }
         if (highScoreTextbox) { highScoreTextbox.text = "High Score " + highscore; }
-
+        if (ammoTextbox) { ammoTextbox.text = Gun.available_shots + "/" + Gun.max_shots; }
     }//end SetHUD()
 
 }

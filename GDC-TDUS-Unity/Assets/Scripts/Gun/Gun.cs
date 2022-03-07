@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public int max_shots = 30;
+    public static int max_shots = 30;
     public GameObject bulletPrefab;
     public Transform fire_point;
     public Transform player_camera;
@@ -12,7 +12,7 @@ public class Gun : MonoBehaviour
     public float fire_rate = 0.1f;
     public bool can_fire = true;
     public float fire_time = 0;
-    public int available_shots;
+    public static int available_shots;
     public float bullet_life = 3.5f;
 
     // Start is called before the first frame update
@@ -35,6 +35,7 @@ public class Gun : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.R))
             ReloadWeapon();
+        
     }
     
     private void FireWeapon()

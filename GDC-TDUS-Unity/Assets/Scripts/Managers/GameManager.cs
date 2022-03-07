@@ -193,6 +193,7 @@ public class GameManager : MonoBehaviour
         //get first game level
         gameLevelsCount = 1; //set the count for the game levels
         loadLevel = gameLevelsCount - 1; //the level from the array
+        lives = numberOfLives;
 
         //load first game level
         SceneManager.LoadScene(gameLevels[loadLevel]);
@@ -251,7 +252,7 @@ public class GameManager : MonoBehaviour
 
 
     //GO TO THE NEXT LEVEL
-    void NextLevel()
+    public void NextLevel()
     { 
         
         //as long as our level count is not more than the amount of levels

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - FloatingCube
+  - Pins
+  - Endzone
   layers:
   - Default
   - TransparentFX

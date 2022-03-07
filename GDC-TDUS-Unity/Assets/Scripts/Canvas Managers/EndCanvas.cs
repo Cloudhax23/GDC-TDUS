@@ -21,6 +21,8 @@ public class EndCanvas : MonoBehaviour
 
     [Header("Canvas SETTINGS")]
     public Text endMsgTextbox; //textbox for the title
+    public Text creditsTextbox; //textbox for the credits
+    public Text copyrightTextbox; //textbox for the copyright
 
 
     private void Start()
@@ -30,7 +32,9 @@ public class EndCanvas : MonoBehaviour
         Debug.Log(gm.endMsg);
 
         //Set the Canvas text from GM reference
-        endMsgTextbox.text = gm.endMsg;
+        endMsgTextbox.text = gm.endMsg == null ? gm.endMsg : gm.defaultEndMessage;
+        creditsTextbox.text = gm.gameCredits;
+        copyrightTextbox.text = gm.copyrightDate;
 
     }
 

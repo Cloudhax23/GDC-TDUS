@@ -52,5 +52,19 @@ public class Player_Controller : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotation.x, 0, 0);
             transform.eulerAngles = new Vector2(0, rotation.y);
         }
+        if(transform.position.y <= -15)
+        {
+            GameManager.GM.LostLife();
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.transform.tag == "FloatingCube")
+        {
+            hit.transform.gameObject.tag = "Untagged";
+            TargetSpawner ts = Camera.main.GetComponent<TargetSpawner>();
+            ts.SpawnNewTarget();
+        }
     }
 }
