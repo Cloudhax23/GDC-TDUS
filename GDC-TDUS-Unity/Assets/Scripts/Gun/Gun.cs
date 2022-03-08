@@ -1,19 +1,30 @@
+/**** 
+ * Created by: Qadeem Qureshi
+ * Date Created: Mar 03, 2022
+ * 
+ * Last Edited by: NA
+ * Last Edited: Mar 07, 2022
+ * 
+ * Description: Gun shooting and handling
+****/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public static int max_shots = 30;
-    public GameObject bulletPrefab;
-    public Transform fire_point;
-    public Transform player_camera;
-    public float time_to_reload = 1.5f;
-    public float fire_rate = 0.1f;
-    public bool can_fire = true;
-    public float fire_time = 0;
-    public static int available_shots;
-    public float bullet_life = 3.5f;
+    [Header("Gun settings:")]
+    public static int max_shots = 30; //How many bullets we have
+    public GameObject bulletPrefab; //The bullet prefab
+    public Transform fire_point; //Our bullet origin position relative to the gun
+    public Transform player_camera; //The camera of our player
+    public float time_to_reload = 1.5f; //How long to reload
+    public float fire_rate = 0.1f; //Time between shots
+    public bool can_fire = true; //Can fire by default
+    public float fire_time = 0; //Track shots
+    public static int available_shots; //Track availble ammo
+    public float bullet_life = 3.5f; //How long a bullet stays alive in scene before destroyed
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +34,7 @@ public class Gun : MonoBehaviour
     }
 
     // Update is called once per frame
+    //Handles firing, reload, etc
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -38,6 +50,7 @@ public class Gun : MonoBehaviour
         
     }
     
+    //Called when fire is click on mouse.
     private void FireWeapon()
     {
         if(can_fire && Time.time > fire_time && available_shots > 0)
@@ -48,7 +61,7 @@ public class Gun : MonoBehaviour
             Destroy(bulletObject, bullet_life);
         }
     }
-
+    //Called when charachter reloads
     private void ReloadWeapon()
     {
         if(available_shots != max_shots)
@@ -58,7 +71,7 @@ public class Gun : MonoBehaviour
             Invoke("ReloadInProgress", time_to_reload);
         }
     }
-
+    //Set our shots to max shots after reload cycle is done
     private void ReloadInProgress()
     {
         available_shots = max_shots;

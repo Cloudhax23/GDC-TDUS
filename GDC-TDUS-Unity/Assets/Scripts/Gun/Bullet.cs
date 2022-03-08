@@ -1,13 +1,23 @@
+/**** 
+ * Created by: Qadeem Qureshi
+ * Date Created: Mar 03, 2022
+ * 
+ * Last Edited by: NA
+ * Last Edited: Mar 07, 2022
+ * 
+ * Description: Bullet collision and handling
+****/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private Vector3 current_pos;
-    private Vector3 new_pos;
-    public float bullet_speed = 345;
-    public float hit_force = 50f;
+    [Header("Bullet settings:")]
+    private Vector3 current_pos; //For raycasting
+    private Vector3 new_pos; //For raycasting
+    public float bullet_speed = 345; //How fast our projectile is
     
     // Start is called before the first frame update
     void Start()
@@ -17,6 +27,7 @@ public class Bullet : MonoBehaviour
     }
 
     // Update is called once per frame
+    //Raycast from current pos to lerp'd next pos based on the speed of the bullet. Check if it collides with something. Delete target if so and spawn platform.
     void FixedUpdate()
     {
         Vector3 velocity = transform.forward * bullet_speed;
